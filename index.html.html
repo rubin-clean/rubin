@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РУБИН — Химчистка мягкой мебели и ковров</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine: #8B1A3A;
+    --wine-dark: #5C1025;
+    --wine-light: #C4436A;
+    --teal: #5BA8A0;
+    --teal-light: #8ECEC8;
+    --cream: #FAF7F2;
+    --warm-white: #FDF9F5;
+    --dark: #1A1014;
+    --text: #2D1A22;
+    --muted: #8A7280;
+    --border: rgba(139,26,58,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── НАВИГАЦИЯ ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(253,249,245,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(139,26,58,0.08); }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--wine);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--wine); }
+
+  .nav-cta {
+    background: var(--wine);
+    color: #fff !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--wine-dark) !important; color: #fff !important; }
+
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .burger span { width: 26px; height: 2px; background: var(--wine); transition: 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vw 5vw 6vw 7vw;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139,26,58,0.08);
+    border: 1px solid rgba(139,26,58,0.2);
+    color: var(--wine);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    width: fit-content;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: "●"; font-size: 0.5rem; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--wine);
+    position: relative;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--wine);
+    color: #fff;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(139,26,58,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--wine-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(139,26,58,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--wine);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 2px solid var(--wine);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--wine); color: #fff; }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--wine);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 0.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: 100%;
+    background: var(--wine);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(91,168,160,0.3) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  }
+
+  .sofa-illustration {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .sofa-svg { width: min(280px, 60%); filter: drop-shadow(0 20px 60px rgba(0,0,0,0.4)); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    text-align: center;
+  }
+  .hero-card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .hero-card-sub { font-size: 0.82rem; opacity: 0.7; }
+
+  .floating-badge {
+    position: absolute;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    animation: float 4s ease-in-out infinite;
+  }
+  .floating-badge .icon { font-size: 1.2rem; }
+  .floating-badge-1 { top: 20%; left: -20px; animation-delay: 0s; }
+  .floating-badge-2 { bottom: 25%; right: -10px; animation-delay: 2s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ── FEATURES ── */
+  #features {
+    padding: 6rem 7vw;
+    background: var(--cream);
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-label::before { content: ''; width: 2rem; height: 2px; background: var(--wine); display: block; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    max-width: 500px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 3.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--wine);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(139,26,58,0.1); border-color: rgba(139,26,58,0.25); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: rgba(139,26,58,0.08);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .feature-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+  .feature-text { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+
+  /* ── УСЛУГИ / ПРАЙС ── */
+  #services {
+    padding: 6rem 7vw;
+    background: var(--warm-white);
+  }
+
+  .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .price-table { width: 100%; border-collapse: collapse; }
+  .price-table thead tr {
+    background: var(--wine);
+    color: #fff;
+  }
+  .price-table th {
+    padding: 0.85rem 1.2rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .price-table th:last-child { text-align: right; }
+
+  .price-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .price-table tbody tr:hover { background: rgba(139,26,58,0.03); }
+
+  .price-cat {
+    background: rgba(139,26,58,0.06) !important;
+  }
+  .price-cat td {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wine);
+  }
+
+  .price-table td {
+    padding: 0.85rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .price-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: var(--wine);
+    white-space: nowrap;
+  }
+
+  .services-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .info-block {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--wine);
+    padding: 1.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .info-block-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+  .info-block-text { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+
+  .teal-block {
+    background: linear-gradient(135deg, #5BA8A0 0%, #3D8A82 100%);
+    border: none;
+    border-radius: 4px;
+    padding: 2rem;
+    color: #fff;
+  }
+  .teal-block .info-block-title { color: #fff; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .teal-block .info-block-text { color: rgba(255,255,255,0.85); }
+  .teal-block .btn-primary {
+    background: #fff;
+    color: var(--wine);
+    margin-top: 1.2rem;
+    display: inline-block;
+    box-shadow: none;
+  }
+  .teal-block .btn-primary:hover { background: var(--cream); transform: none; }
+
+  /* ── КАК МЫ РАБОТАЕМ ── */
+  #process {
+    padding: 6rem 7vw;
+    background: var(--wine-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #process::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91,168,160,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #process .section-label { color: var(--teal-light); }
+  #process .section-label::before { background: var(--teal-light); }
+  #process .section-title { color: #fff; }
+  #process .section-sub { color: rgba(255,255,255,0.55); }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+
+  .step-card {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .step-card:hover { background: rgba(255,255,255,0.08); }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    user-select: none;
+  }
+  .step-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+  .step-text { font-size: 0.85rem; line-height: 1.65; color: rgba(255,255,255,0.55); }
+  .step-accent { color: var(--teal-light); font-weight: 700; }
+
+  /* ── ДЛЯ БИЗНЕСА ── */
+  #business {
+    padding: 6rem 7vw;
+    background: var(--cream);
+  }
+
+  .business-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+  .business-visual {
+    background: var(--wine);
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .business-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(91,168,160,0.3) 0%, transparent 60%);
+  }
+  .biz-icon { font-size: 6rem; position: relative; z-index: 2; }
+
+  .business-points { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .biz-point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .biz-check {
+    width: 22px; height: 22px;
+    background: var(--wine);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .biz-point-text { font-size: 0.92rem; line-height: 1.6; color: var(--text); }
+  .biz-point-text strong { color: var(--dark); }
+
+  /* ── КОНТАКТЫ ── */
+  #contact {
+    padding: 6rem 7vw;
+    background: var(--warm-white);
+  }
+
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(139,26,58,0.08);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-item-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+  .contact-item-value { font-size: 1.05rem; font-weight: 600; color: var(--dark); text-decoration: none; }
+  .contact-item-value:hover { color: var(--wine); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+
+  .form-input, .form-select, .form-textarea {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--wine);
+    box-shadow: 0 0 0 3px rgba(139,26,58,0.1);
+  }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(139,26,58,0.3);
+    width: 100%;
+  }
+  .form-submit:hover {
+    background: var(--wine-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(139,26,58,0.4);
+  }
+
+  .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--teal-light); }
+  footer p { font-size: 0.82rem; }
+
+  /* ── АНИМАЦИИ ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    z-index: 99;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+
+  /* ── SUCCESS MESSAGE ── */
+  .success-msg {
+    display: none;
+    background: rgba(91,168,160,0.1);
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    color: #3D8A82;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  /* ── АДАПТИВ ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { min-height: 300px; }
+    .hero-left { padding: 5rem 6vw 4rem; }
+    .services-layout, .business-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    nav { padding: 0 5vw; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.5rem; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── МОБИЛЬНОЕ МЕНЮ ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 5vw;
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 99;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:hover { color: var(--wine); }
+</style>
+</head>
+<body>
+
+<!-- НАВИГАЦИЯ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">РУ<span>БИН</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">О нас</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#process">Как работаем</a></li>
+    <li><a href="#business">Бизнесу</a></li>
+    <li><a href="#contact" class="nav-cta">Заявка</a></li>
+  </ul>
+  <div class="burger" onclick="toggleMenu()" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="closeMenu()">О нас</a>
+  <a href="#services" onclick="closeMenu()">Услуги и цены</a>
+  <a href="#process" onclick="closeMenu()">Как работаем</a>
+  <a href="#business" onclick="closeMenu()">Для бизнеса</a>
+  <a href="#contact" onclick="closeMenu()">Оставить заявку</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Профессиональная химчистка с выездом</div>
+    <h1 class="hero-title">
+      Чистая мебель —<br>
+      <em>чистый бизнес</em>
+    </h1>
+    <p class="hero-sub">Химчистка диванов, кресел, стульев и ковров с выездом на ваш объект. Работаем с кафе, ресторанами и офисами. Без вывоза мебели — прямо у вас.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Оставить заявку</a>
+      <a href="#services" class="btn-outline">Смотреть цены</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">1–2ч</span>
+        <span class="stat-label">сушка на месте</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">официально, с чеком</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">0₽</span>
+        <span class="stat-label">демо для новых клиентов</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="sofa-illustration">
+        <svg class="sofa-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- carpet -->
+          <ellipse cx="150" cy="155" rx="100" ry="18" fill="#C9B99A" opacity="0.6"/>
+          <circle cx="228" cy="148" r="26" fill="#B8A882" opacity="0.8"/>
+          <circle cx="228" cy="148" r="17" fill="#C9B99A" opacity="0.9"/>
+          <circle cx="228" cy="148" r="9" fill="#B8A882"/>
+          <circle cx="228" cy="148" r="4" fill="#9A8B6E"/>
+          <!-- waves -->
+          <path d="M40 158 Q65 143 90 158 Q115 173 140 158 Q165 143 190 158 Q215 173 240 158 Q248 162 248 168 Q220 153 195 168 Q170 183 145 168 Q120 153 95 168 Q70 183 45 168 Q38 164 40 158Z" fill="#8ECEC8" opacity="0.85"/>
+          <path d="M35 172 Q62 157 88 172 Q114 187 140 172 Q166 157 192 172 Q210 182 218 178 Q194 163 168 178 Q142 193 116 178 Q90 163 64 178 Q38 193 32 180 Q32 176 35 172Z" fill="#6AADA6" opacity="0.8"/>
+          <!-- sofa body -->
+          <rect x="72" y="100" width="156" height="58" rx="10" fill="rgba(255,255,255,0.95)"/>
+          <!-- armrests -->
+          <rect x="52" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
+          <rect x="218" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
+          <!-- backrest -->
+          <rect x="64" y="68" width="172" height="46" rx="12" fill="rgba(255,255,255,0.98)"/>
+          <!-- cushions -->
+          <rect x="78" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
+          <rect x="156" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
+          <!-- sparkle -->
+          <line x1="230" y1="52" x2="230" y2="76" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="218" y1="64" x2="242" y2="64" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="221" y1="55" x2="239" y2="73" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="239" y1="55" x2="221" y2="73" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="hero-card">
+          <div class="hero-card-title">Выездная химчистка</div>
+          <div class="hero-card-sub">Без закрытия зала · Договор · Чек</div>
+        </div>
+      </div>
+      <div class="floating-badge floating-badge-1">
+        <span class="icon">⚡</span>
+        <div>
+          <div style="font-weight:700;font-size:0.85rem">Сушка за 1–2 часа</div>
+          <div style="color:#888;font-size:0.75rem">Фен прямо на месте</div>
+        </div>
+      </div>
+      <div class="floating-badge floating-badge-2">
+        <span class="icon">📄</span>
+        <div>
+          <div style="font-weight:700;font-size:0.85rem">Официально</div>
+          <div style="color:#888;font-size:0.75rem">Договор + чек</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section id="features">
+  <div class="section-label">Почему выбирают нас</div>
+  <h2 class="section-title">Профессиональный подход на каждом этапе</h2>
+  <p class="section-sub">Работаем с профессиональным оборудованием и сертифицированной химией — это не бытовой пылесос, а промышленный экстрактор.</p>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🧴</div>
+      <div class="feature-title">Безопасная химия</div>
+      <div class="feature-text">Используем сертифицированные составы — безопасны для детей, животных и аллергиков.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Быстрая сушка</div>
+      <div class="feature-text">Профессиональные фены ускоряют сушку до 1–2 часов. Мебель готова к использованию сразу.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🏠</div>
+      <div class="feature-title">Выезд на объект</div>
+      <div class="feature-text">Приезжаем с полным комплектом оборудования. Никакого вывоза мебели — всё на месте.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Договор и чек</div>
+      <div class="feature-text">Работаем официально как самозанятые. Договор, акт, чек из «Мой налог» — всё для вашей бухгалтерии.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔧</div>
+      <div class="feature-title">Проф. оборудование</div>
+      <div class="feature-text">Экстрактор, сухой и моющий пылесос, распылитель — промышленный класс для максимального результата.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📞</div>
+      <div class="feature-title">Быстрый отклик</div>
+      <div class="feature-text">Отвечаем в течение 15 минут. Возможен выезд в день обращения при наличии окна.</div>
+    </div>
+  </div>
+</section>
+
+<!-- УСЛУГИ И ЦЕНЫ -->
+<section id="services">
+  <div class="section-label reveal">Услуги и цены</div>
+  <h2 class="section-title reveal">Прозрачные цены без скрытых доплат</h2>
+  <div class="services-layout">
+    <table class="price-table reveal">
+      <thead>
+        <tr>
+          <th>Услуга</th>
+          <th style="text-align:right">Стоимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="price-cat"><td colspan="2">Диваны и кресла</td></tr>
+        <tr><td>Диван до 3 мест</td><td>от 2 500 ₽</td></tr>
+        <tr><td>Угловой / от 3 мест</td><td>от 3 500 ₽</td></tr>
+        <tr><td>Кресло мягкое</td><td>от 800 ₽</td></tr>
+        <tr class="price-cat"><td colspan="2">Стулья</td></tr>
+        <tr><td>Ресторанный / барный стул</td><td>от 350–400 ₽</td></tr>
+        <tr><td>Офисный стул</td><td>от 400 ₽</td></tr>
+        <tr class="price-cat"><td colspan="2">Ковры</td></tr>
+        <tr><td>Ковёр / покрытие</td><td>от 200 ₽/м²</td></tr>
+        <tr><td>Ковровая дорожка</td><td>от 150 ₽/м²</td></tr>
+        <tr class="price-cat"><td colspan="2">Матрасы</td></tr>
+        <tr><td>Односпальный</td><td>от 2 000 ₽</td></tr>
+        <tr><td>Двуспальный</td><td>от 3 000 ₽</td></tr>
+        <tr class="price-cat"><td colspan="2">Дополнительно</td></tr>
+        <tr><td>Срочный выезд (день в день)</td><td>+30%</td></tr>
+        <tr><td>Обработка от запаха</td><td>от 500 ₽</td></tr>
+      </tbody>
+    </table>
+    <div class="services-info reveal">
+      <div class="info-block">
+        <div class="info-block-title">📦 Скидки при объёме</div>
+        <div class="info-block-text">При заказе от 10 единиц мебели — скидка 10%. При регулярном обслуживании — фиксированная цена по договору.</div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-title">🕐 Удобное время выезда</div>
+        <div class="info-block-text">Работаем с 7:00 до 22:00 ежедневно. Для заведений — выезд до открытия или в тихий час, чтобы не мешать гостям.</div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-title">💳 Оплата</div>
+        <div class="info-block-text">Наличными или безналичным переводом. После оплаты выдаём чек самозанятого через приложение «Мой налог».</div>
+      </div>
+      <div class="teal-block">
+        <div class="info-block-title">🎁 Бесплатное демо</div>
+        <div class="info-block-text">Для новых клиентов — почистим одно кресло или стул бесплатно. Вы увидите результат до того, как примете решение.</div>
+        <a href="#contact" class="btn-primary">Записаться на демо</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК МЫ РАБОТАЕМ -->
+<section id="process">
+  <div class="section-label reveal">Процесс</div>
+  <h2 class="section-title reveal">Как проходит химчистка</h2>
+  <p class="section-sub reveal">Весь процесс занимает от 2 до 4 часов в зависимости от объёма. Мебель готова к использованию в тот же день.</p>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Заявка и расчёт</div>
+      <div class="step-text">Вы оставляете заявку — мы перезваниваем в течение <span class="step-accent">15 минут</span>, уточняем объём и называем точную цену.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Выезд на объект</div>
+      <div class="step-text">Приезжаем в согласованное время с полным комплектом оборудования. <span class="step-accent">Без предоплаты.</span></div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Химчистка</div>
+      <div class="step-text">Проводим профессиональную чистку экстрактором. <span class="step-accent">Не мешаем работе</span> вашего заведения.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Сушка и сдача</div>
+      <div class="step-text">Сушим феном прямо на месте — <span class="step-accent">1–2 часа.</span> Подписываем акт. Выдаём чек. Мебель готова.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ДЛЯ БИЗНЕСА -->
+<section id="business">
+  <div class="business-layout">
+    <div class="reveal">
+      <div class="section-label">Для бизнеса</div>
+      <h2 class="section-title">Работаем с кафе, ресторанами и офисами</h2>
+      <p class="section-sub">Понимаем специфику HoReCa: выезжаем до открытия, работаем быстро, оформляем все документы для бухгалтерии.</p>
+      <div class="business-points">
+        <div class="biz-point">
+          <div class="biz-check">✓</div>
+          <div class="biz-point-text"><strong>Не мешаем работе зала</strong> — приезжаем до открытия или в тихий час</div>
+        </div>
+        <div class="biz-point">
+          <div class="biz-check">✓</div>
+          <div class="biz-point-text"><strong>Полный пакет документов</strong> — договор, акт, счёт, чек самозанятого</div>
+        </div>
+        <div class="biz-point">
+          <div class="biz-check">✓</div>
+          <div class="biz-point-text"><strong>Абонентское обслуживание</strong> — фиксированная цена, регулярные выезды</div>
+        </div>
+        <div class="biz-point">
+          <div class="biz-check">✓</div>
+          <div class="biz-point-text"><strong>Санитарные нормы</strong> — чистая мебель это требование СанПиН, не просто эстетика</div>
+        </div>
+        <div class="biz-point">
+          <div class="biz-check">✓</div>
+          <div class="biz-point-text"><strong>Лучшие отзывы</strong> — гости замечают чистоту и свежесть, оставляют высокие оценки</div>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:2rem">Отправить КП на email</a>
+    </div>
+    <div class="business-visual reveal">
+      <span class="biz-icon">🏪</span>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section id="contact">
+  <div class="section-label reveal">Контакты</div>
+  <h2 class="section-title reveal">Оставьте заявку — ответим за 15 минут</h2>
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Телефон / WhatsApp</div>
+          <a href="tel:+70000000000" class="contact-item-value">+7 (000) 000-00-00</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <a href="mailto:info@rubin-clean.ru" class="contact-item-value">info@rubin-clean.ru</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-item-label">Время работы</div>
+          <div class="contact-item-value">Ежедневно 7:00 — 22:00</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Район работы</div>
+          <div class="contact-item-value">Город и пригород</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input type="text" class="form-input" placeholder="Как к вам обращаться?" id="fname">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" id="fphone">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Тип клиента</label>
+        <select class="form-select" id="ftype">
+          <option value="">Выберите...</option>
+          <option>Частное лицо</option>
+          <option>Кафе / ресторан</option>
+          <option>Офис / компания</option>
+          <option>Гостиница / отель</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Что нужно почистить?</label>
+        <textarea class="form-textarea" placeholder="Например: 2 дивана и 8 стульев в кафе, есть пятна от кофе..." id="fmsg"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Отправить заявку →</button>
+      <div class="success-msg" id="successMsg">✅ Заявка принята! Перезвоним в течение 15 минут.</div>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">РУ<span>БИН</span></a>
+  <p>Профессиональная химчистка мягкой мебели и ковров</p>
+  <p>© 2025 РУБИН. Все права защищены.</p>
+</footer>
+
+<!-- WhatsApp кнопка -->
+<a href="https://wa.me/70000000000" class="wa-float" target="_blank" title="WhatsApp">💬</a>
+
+<script>
+  // Навбар при скролле
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Мобильное меню
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Форма
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    if (!name || !phone) {
+      alert('Пожалуйста, заполните имя и телефон.');
+      return;
+    }
+    document.getElementById('successMsg').style.display = 'block';
+    document.querySelector('.form-submit').style.display = 'none';
+    document.getElementById('fname').value = '';
+    document.getElementById('fphone').value = '';
+    document.getElementById('fmsg').value = '';
+    document.getElementById('ftype').value = '';
+  }
+
+  // Плавный скролл для якорей
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

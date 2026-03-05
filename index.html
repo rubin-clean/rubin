@@ -1082,20 +1082,35 @@
   reveals.forEach(el => observer.observe(el));
 
   // Форма
-  function submitForm() {
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    if (!name || !phone) {
-      alert('Пожалуйста, заполните имя и телефон.');
-      return;
-    }
+  async function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  if (!name || !phone) {
+    alert('Пожалуйста, заполните имя и телефон.');
+    return;
+  }
+  const data = {
+    name,
+    phone,
+    type: document.getElementById('ftype').value,
+    message: document.getElementById('fmsg').value
+  };
+  const res = await fetch('https://formspree.io/f/mbdzrgrg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  if (res.ok) {
     document.getElementById('successMsg').style.display = 'block';
     document.querySelector('.form-submit').style.display = 'none';
     document.getElementById('fname').value = '';
     document.getElementById('fphone').value = '';
     document.getElementById('fmsg').value = '';
     document.getElementById('ftype').value = '';
+  } else {
+    alert('Ошибка отправки. Попробуйте ещё раз.');
   }
+}
 
   // Плавный скролл для якорей
   document.querySelectorAll('a[href^="#"]').forEach(a => {

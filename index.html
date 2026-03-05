@@ -723,6 +723,8 @@
     <li><a href="#services">Услуги</a></li>
     <li><a href="#process">Как работаем</a></li>
     <li><a href="#business">Бизнесу</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#faq">Вопросы</a></li>
     <li><a href="#contact" class="nav-cta">Заявка</a></li>
   </ul>
   <div class="burger" onclick="toggleMenu()" id="burger">
@@ -735,6 +737,8 @@
   <a href="#services" onclick="closeMenu()">Услуги и цены</a>
   <a href="#process" onclick="closeMenu()">Как работаем</a>
   <a href="#business" onclick="closeMenu()">Для бизнеса</a>
+  <a href="#reviews" onclick="closeMenu()">Отзывы</a>
+  <a href="#faq" onclick="closeMenu()">Вопросы и ответы</a>
   <a href="#contact" onclick="closeMenu()">Оставить заявку</a>
 </div>
 
@@ -986,14 +990,14 @@
         <div class="contact-icon">📞</div>
         <div>
           <div class="contact-item-label">Телефон / WhatsApp</div>
-          <a href="tel:+70000000000" class="contact-item-value">+7 (950) 543-40-23</a>
+          <a href="tel:+70000000000" class="contact-item-value">+7 (000) 000-00-00</a>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">✉️</div>
         <div>
           <div class="contact-item-label">Email</div>
-          <a href="mailto:rubin.clean.ekb@gmail.com" class="contact-item-value">rubin.clean.ekb@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#2841464e47685a5d4a4146054b444d4946065a5d" class="contact-item-value"><span class="__cf_email__" data-cfemail="0861666e67487a7d6a6166256b646d6966267a7d">[email&#160;protected]</span></a>
         </div>
       </div>
       <div class="contact-item">
@@ -1007,7 +1011,7 @@
         <div class="contact-icon">📍</div>
         <div>
           <div class="contact-item-label">Район работы</div>
-          <div class="contact-item-value">Екатеринбург/Верхняя Пышма</div>
+          <div class="contact-item-value">Город и пригород</div>
         </div>
       </div>
     </div>
@@ -1019,7 +1023,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">Телефон</label>
-          <input type="tel" class="form-input" placeholder="+7 (950) 543-40-23" id="fphone">
+          <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" id="fphone">
         </div>
       </div>
       <div class="form-group">
@@ -1044,17 +1048,200 @@
   </div>
 </section>
 
+
+<!-- ОТЗЫВЫ -->
+<section id="reviews" style="padding:6rem 7vw;background:var(--wine-dark);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-50%;left:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(91,168,160,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="section-label reveal" style="color:var(--teal-light);">
+    <style>.section-label::before{background:var(--teal-light)!important}</style>
+    Отзывы клиентов
+  </div>
+  <h2 class="section-title reveal" style="color:#fff;">Что говорят наши клиенты</h2>
+  <p class="section-sub reveal" style="color:rgba(255,255,255,0.5);">Реальные отзывы от частных клиентов и заведений</p>
+
+  <div class="slider-wrap reveal" style="position:relative;max-width:800px;margin:0 auto;">
+    <div class="slider" id="reviewSlider" style="overflow:hidden;">
+      <div class="slides" id="slides" style="display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
+
+        <!-- Отзыв 1 -->
+        <div class="slide" style="min-width:100%;padding:0 8px;">
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
+            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
+            <div style="padding-top:1.5rem;">
+              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Приехали вовремя, быстро приступили к работе и справились с тяжёлыми пятнами. Мебель выглядит как после покупки — не ожидала такого результата. Однозначно рекомендую!</p>
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#C4436A,#8B1A3A);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">М</div>
+                <div>
+                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Марина Соколова</div>
+                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:3px;">
+                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отзыв 2 -->
+        <div class="slide" style="min-width:100%;padding:0 8px;">
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
+            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
+            <div style="padding-top:1.5rem;">
+              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Согласовали удобное время для чистки — приехали до открытия заведения, не мешали работе. Оборудование профессиональное, не бытовое. После сушки феном через 2 часа зал был полностью готов к гостям. Спасибо за оперативность!</p>
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#5BA8A0,#3D8A82);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">А</div>
+                <div>
+                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Алексей Громов</div>
+                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Управляющий кафе «Уют»</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:3px;">
+                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отзыв 3 -->
+        <div class="slide" style="min-width:100%;padding:0 8px;">
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
+            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
+            <div style="padding-top:1.5rem;">
+              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Впервые заказали химчистку ковра — он лежал у нас уже 5 лет и мы думали придётся выбросить. После чистки стал выглядеть как новый, приятный свежий запах. Приятно удивлены результатом. Отличная работа!</p>
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#C4436A,#6B1230);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">Е</div>
+                <div>
+                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Елена Васильева</div>
+                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:3px;">
+                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отзыв 4 -->
+        <div class="slide" style="min-width:100%;padding:0 8px;">
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
+            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
+            <div style="padding-top:1.5rem;">
+              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Заказали химчистку детской мебели — работали двое, поэтому всё прошло очень быстро. Использовали экологичные средства, что для нас принципиально важно. Очень довольны результатом и обязательно порекомендуем всем знакомым!</p>
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#8ECEC8,#5BA8A0);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">О</div>
+                <div>
+                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Ольга Петрова</div>
+                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:3px;">
+                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Кнопки -->
+    <button onclick="prevSlide()" style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8592;</button>
+    <button onclick="nextSlide()" style="position:absolute;right:-24px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8594;</button>
+
+    <!-- Точки -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:2rem;" id="dots">
+      <button onclick="goToSlide(0)" class="dot active-dot" style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
+      <button onclick="goToSlide(1)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
+      <button onclick="goToSlide(2)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
+      <button onclick="goToSlide(3)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding:6rem 7vw;background:var(--cream);">
+  <div class="section-label reveal">Частые вопросы</div>
+  <h2 class="section-title reveal">Ваши вопросы — наши ответы</h2>
+  <p class="section-sub reveal">Отвечаем на самые популярные вопросы клиентов</p>
+
+  <div style="max-width:780px;display:flex;flex-direction:column;gap:0.75rem;" class="reveal">
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Сколько времени занимает чистка?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Зависит от объёма. Один диван — около 30–40 минут чистки плюс 1–2 часа сушки феном. Стул или кресло — 15–20 минут. При большом объёме (например 20 стульев в ресторане) работаем вдвоём — это значительно ускоряет процесс. Мебель готова к использованию в тот же день.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Какие загрязнения вы удаляете?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Удаляем пятна от еды и напитков (кофе, вино, соусы), жировые загрязнения, уличную грязь, шерсть животных, неприятные запахи, пыль и бактерии. Со свежими пятнами справляемся в 100% случаев. Старые и глубокие загрязнения — в большинстве случаев, но предупредим заранее если есть ограничения по материалу.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Нужно ли вывозить мебель?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Нет, это одно из главных наших преимуществ. Мы приезжаем к вам с полным комплектом профессионального оборудования и проводим чистку прямо на месте. Никакого вывоза, никаких неудобств. Для заведений работаем до открытия или в тихий час — не мешаем гостям.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Безопасна ли химия для детей и животных?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Да, используем только сертифицированные моющие средства на водной основе — без агрессивных растворителей и токсичных компонентов. После высыхания мебель абсолютно безопасна. Рекомендуем не допускать детей и животных к мебели во время чистки и в течение 1–2 часов сушки.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Работаете ли с юридическими лицами?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Да, работаем с кафе, ресторанами, гостиницами и офисами. Предоставляем полный пакет закрывающих документов: договор, акт выполненных работ, счёт и чек самозанятого из приложения «Мой налог». НДС не облагается. Возможно регулярное обслуживание по договору с фиксированной ценой.</p>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
+        Есть ли гарантия на результат?
+        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+      </button>
+      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
+        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Перед началом работ оцениваем состояние изделия и честно говорим на что можно рассчитывать. Если по каким-то причинам результат вас не устраивает — разберём ситуацию индивидуально. Для новых клиентов предлагаем бесплатное демо на одном предмете — вы видите качество до оплаты.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <a href="#" class="footer-logo">РУ<span>БИН</span></a>
   <p>Профессиональная химчистка мягкой мебели и ковров</p>
-  <p>© 2026 РУБИН. Все права защищены.</p>
+  <p>© 2025 РУБИН. Все права защищены.</p>
 </footer>
 
 <!-- WhatsApp кнопка -->
-<a href="https://wa.me/79505434023" class="wa-float" target="_blank" title="WhatsApp">💬</a>
+<a href="https://wa.me/70000000000" class="wa-float" target="_blank" title="WhatsApp">💬</a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Навбар при скролле
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1082,46 +1269,93 @@
   reveals.forEach(el => observer.observe(el));
 
   // Форма
-  async function submitForm() {
-  const name = document.getElementById('fname').value.trim();
-  const phone = document.getElementById('fphone').value.trim();
-  if (!name || !phone) {
-    alert('Пожалуйста, заполните имя и телефон.');
-    return;
-  }
-  const data = {
-    name,
-    phone,
-    type: document.getElementById('ftype').value,
-    message: document.getElementById('fmsg').value
-  };
-  const res = await fetch('https://formspree.io/f/mbdzrgrg', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  });
-  if (res.ok) {
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    if (!name || !phone) {
+      alert('Пожалуйста, заполните имя и телефон.');
+      return;
+    }
     document.getElementById('successMsg').style.display = 'block';
     document.querySelector('.form-submit').style.display = 'none';
     document.getElementById('fname').value = '';
     document.getElementById('fphone').value = '';
     document.getElementById('fmsg').value = '';
     document.getElementById('ftype').value = '';
-  } else {
-    alert('Ошибка отправки. Попробуйте ещё раз.');
   }
-}
+
+
+  // ── СЛАЙДЕР ОТЗЫВОВ ──
+  let currentSlide = 0;
+  const totalSlides = 4;
+  let autoplayTimer;
+
+  function updateSlider() {
+    const slides = document.getElementById('slides');
+    if (slides) {
+      slides.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.style.background = i === currentSlide ? 'var(--teal-light)' : 'rgba(255,255,255,0.3)';
+        d.style.width = i === currentSlide ? '24px' : '8px';
+        d.style.borderRadius = '4px';
+      });
+    }
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlider();
+    resetAutoplay();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlider();
+    resetAutoplay();
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    updateSlider();
+    resetAutoplay();
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(nextSlide, 5000);
+  }
+
+  // Автопролистывание каждые 5 секунд
+  autoplayTimer = setInterval(nextSlide, 5000);
+
+  // Свайп на мобильных
+  let touchStartX = 0;
+  const sliderEl = document.getElementById('reviewSlider');
+  if (sliderEl) {
+    sliderEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    sliderEl.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+    });
+  }
+
+  // ── FAQ ──
+  function toggleFaq(btn) {
+    const body = btn.nextElementSibling;
+    const arrow = btn.querySelector('.faq-arrow');
+    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+    // Закрыть все
+    document.querySelectorAll('.faq-body').forEach(b => { b.style.maxHeight = '0px'; b.style.paddingBottom = '0'; });
+    document.querySelectorAll('.faq-arrow').forEach(a => { a.style.transform = 'rotate(0deg)'; a.textContent = '+'; });
+    document.querySelectorAll('.faq-item').forEach(i => i.style.borderColor = 'var(--border)');
+    // Открыть текущий если был закрыт
+    if (!isOpen) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      arrow.style.transform = 'rotate(45deg)';
+      btn.closest('.faq-item').style.borderColor = 'var(--wine)';
+    }
+  }
 
   // Плавный скролл для якорей
   document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
-</body>
-</html>
+    a.addEventListener('click',

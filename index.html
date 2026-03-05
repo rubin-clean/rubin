@@ -6,711 +6,175 @@
 <title>РУБИН — Химчистка мягкой мебели и ковров</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --wine: #8B1A3A;
-    --wine-dark: #5C1025;
-    --wine-light: #C4436A;
-    --teal: #5BA8A0;
-    --teal-light: #8ECEC8;
-    --cream: #FAF7F2;
-    --warm-white: #FDF9F5;
-    --dark: #1A1014;
-    --text: #2D1A22;
-    --muted: #8A7280;
-    --border: rgba(139,26,58,0.12);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Manrope', sans-serif;
-    background: var(--warm-white);
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  /* ── НАВИГАЦИЯ ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    height: 72px;
-    background: rgba(253,249,245,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    transition: box-shadow 0.3s;
-  }
-  nav.scrolled { box-shadow: 0 4px 32px rgba(139,26,58,0.08); }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: var(--wine);
-    letter-spacing: 0.04em;
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--teal); }
-
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--wine); }
-
-  .nav-cta {
-    background: var(--wine);
-    color: #fff !important;
-    padding: 0.55rem 1.4rem;
-    border-radius: 2px;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--wine-dark) !important; color: #fff !important; }
-
-  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .burger span { width: 26px; height: 2px; background: var(--wine); transition: 0.3s; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 72px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6vw 5vw 6vw 7vw;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(139,26,58,0.08);
-    border: 1px solid rgba(139,26,58,0.2);
-    color: var(--wine);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.4rem 0.9rem;
-    border-radius: 2px;
-    width: fit-content;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-badge::before { content: "●"; font-size: 0.5rem; }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 4.5vw, 5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-  .hero-title em {
-    font-style: normal;
-    color: var(--wine);
-    position: relative;
-  }
-  .hero-title em::after {
-    content: '';
-    position: absolute;
-    bottom: 4px; left: 0; right: 0;
-    height: 3px;
-    background: var(--teal);
-    border-radius: 2px;
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 480px;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3.5rem;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--wine);
-    color: #fff;
-    padding: 0.9rem 2.2rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border-radius: 2px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(139,26,58,0.3);
-  }
-  .btn-primary:hover {
-    background: var(--wine-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(139,26,58,0.4);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--wine);
-    padding: 0.9rem 2.2rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border-radius: 2px;
-    border: 2px solid var(--wine);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-outline:hover { background: var(--wine); color: #fff; }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    animation: fadeUp 0.6s 0.4s ease both;
-  }
-  .stat-item { display: flex; flex-direction: column; }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--wine);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 500;
-    margin-top: 0.25rem;
-    letter-spacing: 0.03em;
-  }
-
-  .hero-right {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-visual {
-    width: 100%;
-    height: 100%;
-    background: var(--wine);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(91,168,160,0.3) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
-  }
-
-  .sofa-illustration {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 3rem;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .sofa-svg { width: min(280px, 60%); filter: drop-shadow(0 20px 60px rgba(0,0,0,0.4)); }
-
-  .hero-card {
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
-    padding: 1rem 1.5rem;
-    color: #fff;
-    text-align: center;
-  }
-  .hero-card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-  .hero-card-sub { font-size: 0.82rem; opacity: 0.7; }
-
-  .floating-badge {
-    position: absolute;
-    background: #fff;
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text);
-    animation: float 4s ease-in-out infinite;
-  }
-  .floating-badge .icon { font-size: 1.2rem; }
-  .floating-badge-1 { top: 20%; left: -20px; animation-delay: 0s; }
-  .floating-badge-2 { bottom: 25%; right: -10px; animation-delay: 2s; }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  /* ── FEATURES ── */
-  #features {
-    padding: 6rem 7vw;
-    background: var(--cream);
-  }
-
-  .section-label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--wine);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .section-label::before { content: ''; width: 2rem; height: 2px; background: var(--wine); display: block; }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 900;
-    line-height: 1.15;
-    color: var(--dark);
-    margin-bottom: 1rem;
-    max-width: 500px;
-  }
-
-  .section-sub {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 480px;
-    margin-bottom: 3.5rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .feature-card {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--wine);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(139,26,58,0.1); border-color: rgba(139,26,58,0.25); }
-  .feature-card:hover::before { transform: scaleX(1); }
-
-  .feature-icon {
-    width: 52px; height: 52px;
-    background: rgba(139,26,58,0.08);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-  }
-  .feature-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
-  .feature-text { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
-
-  /* ── УСЛУГИ / ПРАЙС ── */
-  #services {
-    padding: 6rem 7vw;
-    background: var(--warm-white);
-  }
-
-  .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-
-  .price-table { width: 100%; border-collapse: collapse; }
-  .price-table thead tr {
-    background: var(--wine);
-    color: #fff;
-  }
-  .price-table th {
-    padding: 0.85rem 1.2rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-align: left;
-  }
-  .price-table th:last-child { text-align: right; }
-
-  .price-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
-  }
-  .price-table tbody tr:hover { background: rgba(139,26,58,0.03); }
-
-  .price-cat {
-    background: rgba(139,26,58,0.06) !important;
-  }
-  .price-cat td {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--wine);
-  }
-
-  .price-table td {
-    padding: 0.85rem 1.2rem;
-    font-size: 0.9rem;
-  }
-  .price-table td:last-child {
-    text-align: right;
-    font-weight: 700;
-    color: var(--wine);
-    white-space: nowrap;
-  }
-
-  .services-info { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .info-block {
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--wine);
-    padding: 1.5rem;
-    border-radius: 0 4px 4px 0;
-  }
-  .info-block-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
-  .info-block-text { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
-
-  .teal-block {
-    background: linear-gradient(135deg, #5BA8A0 0%, #3D8A82 100%);
-    border: none;
-    border-radius: 4px;
-    padding: 2rem;
-    color: #fff;
-  }
-  .teal-block .info-block-title { color: #fff; font-size: 1.1rem; margin-bottom: 0.75rem; }
-  .teal-block .info-block-text { color: rgba(255,255,255,0.85); }
-  .teal-block .btn-primary {
-    background: #fff;
-    color: var(--wine);
-    margin-top: 1.2rem;
-    display: inline-block;
-    box-shadow: none;
-  }
-  .teal-block .btn-primary:hover { background: var(--cream); transform: none; }
-
-  /* ── КАК МЫ РАБОТАЕМ ── */
-  #process {
-    padding: 6rem 7vw;
-    background: var(--wine-dark);
-    position: relative;
-    overflow: hidden;
-  }
-  #process::before {
-    content: '';
-    position: absolute;
-    top: -50%; right: -10%;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(91,168,160,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  #process .section-label { color: var(--teal-light); }
-  #process .section-label::before { background: var(--teal-light); }
-  #process .section-title { color: #fff; }
-  #process .section-sub { color: rgba(255,255,255,0.55); }
-
-  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-
-  .step-card {
-    position: relative;
-    padding: 2rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    transition: background 0.2s;
-  }
-  .step-card:hover { background: rgba(255,255,255,0.08); }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.08);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    user-select: none;
-  }
-  .step-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
-  .step-text { font-size: 0.85rem; line-height: 1.65; color: rgba(255,255,255,0.55); }
-  .step-accent { color: var(--teal-light); font-weight: 700; }
-
-  /* ── ДЛЯ БИЗНЕСА ── */
-  #business {
-    padding: 6rem 7vw;
-    background: var(--cream);
-  }
-
-  .business-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-
-  .business-visual {
-    background: var(--wine);
-    border-radius: 4px;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .business-visual::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(91,168,160,0.3) 0%, transparent 60%);
-  }
-  .biz-icon { font-size: 6rem; position: relative; z-index: 2; }
-
-  .business-points { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-  .biz-point {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  .biz-check {
-    width: 22px; height: 22px;
-    background: var(--wine);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-size: 0.7rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .biz-point-text { font-size: 0.92rem; line-height: 1.6; color: var(--text); }
-  .biz-point-text strong { color: var(--dark); }
-
-  /* ── КОНТАКТЫ ── */
-  #contact {
-    padding: 6rem 7vw;
-    background: var(--warm-white);
-  }
-
-  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-
-  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
-
-  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
-  .contact-icon {
-    width: 44px; height: 44px;
-    background: rgba(139,26,58,0.08);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .contact-item-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
-  .contact-item-value { font-size: 1.05rem; font-weight: 600; color: var(--dark); text-decoration: none; }
-  .contact-item-value:hover { color: var(--wine); }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-
-  .form-input, .form-select, .form-textarea {
-    background: var(--cream);
-    border: 1.5px solid var(--border);
-    border-radius: 2px;
-    padding: 0.75rem 1rem;
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.92rem;
-    color: var(--text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    width: 100%;
-  }
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    outline: none;
-    border-color: var(--wine);
-    box-shadow: 0 0 0 3px rgba(139,26,58,0.1);
-  }
-  .form-textarea { resize: vertical; min-height: 100px; }
-
-  .form-submit {
-    background: var(--wine);
-    color: #fff;
-    border: none;
-    padding: 1rem 2rem;
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(139,26,58,0.3);
-    width: 100%;
-  }
-  .form-submit:hover {
-    background: var(--wine-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(139,26,58,0.4);
-  }
-
-  .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.5);
-    padding: 2.5rem 7vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: #fff;
-    text-decoration: none;
-  }
-  .footer-logo span { color: var(--teal-light); }
-  footer p { font-size: 0.82rem; }
-
-  /* ── АНИМАЦИИ ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal { opacity: 1; transform: none; }
-
-  /* ── WHATSAPP FLOAT ── */
-  .wa-float {
-    position: fixed;
-    bottom: 2rem; right: 2rem;
-    width: 56px; height: 56px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    z-index: 99;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
-
-  /* ── SUCCESS MESSAGE ── */
-  .success-msg {
-    display: none;
-    background: rgba(91,168,160,0.1);
-    border: 1px solid var(--teal);
-    border-radius: 4px;
-    padding: 1rem;
-    text-align: center;
-    color: #3D8A82;
-    font-weight: 600;
-    font-size: 0.92rem;
-  }
-
-  /* ── АДАПТИВ ── */
-  @media (max-width: 900px) {
-    #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { min-height: 300px; }
-    .hero-left { padding: 5rem 6vw 4rem; }
-    .services-layout, .business-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .burger { display: flex; }
-    nav { padding: 0 5vw; }
-  }
-
-  @media (max-width: 600px) {
-    .hero-stats { gap: 1.5rem; }
-    .steps-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  /* ── МОБИЛЬНОЕ МЕНЮ ── */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 72px; left: 0; right: 0;
-    background: var(--warm-white);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 5vw;
-    flex-direction: column;
-    gap: 1.2rem;
-    z-index: 99;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    text-decoration: none;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .mobile-menu a:hover { color: var(--wine); }
+:root{--wine:#8B1A3A;--wine-dark:#5C1025;--wine-light:#C4436A;--teal:#5BA8A0;--teal-light:#8ECEC8;--cream:#FAF7F2;--warm-white:#FDF9F5;--dark:#1A1014;--text:#2D1A22;--muted:#8A7280;--border:rgba(139,26,58,0.12);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',sans-serif;background:var(--warm-white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;background:rgba(253,249,245,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 4px 32px rgba(139,26,58,0.08);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--wine);letter-spacing:0.04em;text-decoration:none;}
+.nav-logo span{color:var(--teal);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.85rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--wine);}
+.nav-cta{background:var(--wine)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:2px;}
+.nav-cta:hover{background:var(--wine-dark)!important;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.burger span{width:26px;height:2px;background:var(--wine);display:block;}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--warm-white);border-bottom:1px solid var(--border);padding:1.5rem 5vw;flex-direction:column;gap:1rem;z-index:99;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:1rem;font-weight:600;color:var(--text);text-decoration:none;padding:0.5rem 0;border-bottom:1px solid var(--border);}
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5vw 4vw 5vw 7vw;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(139,26,58,0.08);border:1px solid rgba(139,26,58,0.2);color:var(--wine);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 0.9rem;border-radius:2px;width:fit-content;margin-bottom:1.8rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,4.5rem);font-weight:900;line-height:1.05;color:var(--dark);margin-bottom:1.2rem;}
+.hero-title em{font-style:normal;color:var(--wine);}
+.hero-sub{font-size:1rem;line-height:1.7;color:var(--muted);max-width:460px;margin-bottom:2rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{background:var(--wine);color:#fff;padding:0.85rem 2rem;font-size:0.9rem;font-weight:700;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(139,26,58,0.3);font-family:'Manrope',sans-serif;}
+.btn-primary:hover{background:var(--wine-dark);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--wine);padding:0.85rem 2rem;font-size:0.9rem;font-weight:700;text-decoration:none;border-radius:2px;border:2px solid var(--wine);cursor:pointer;transition:all 0.2s;font-family:'Manrope',sans-serif;}
+.btn-outline:hover{background:var(--wine);color:#fff;}
+.hero-stats{display:flex;gap:2rem;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--wine);line-height:1;}
+.stat-label{font-size:0.72rem;color:var(--muted);font-weight:500;margin-top:0.2rem;}
+.hero-right{background:var(--wine);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(91,168,160,0.3) 0%,transparent 60%);}
+.hero-visual{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:3rem;}
+.hero-card{background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:1rem 1.5rem;color:#fff;text-align:center;}
+.hero-card-title{font-size:1rem;font-weight:700;margin-bottom:0.3rem;}
+.hero-card-sub{font-size:0.8rem;opacity:0.7;}
+/* SECTIONS */
+section{padding:5rem 7vw;}
+#features{background:var(--cream);}
+#services{background:var(--warm-white);}
+#process{background:var(--wine-dark);}
+#business{background:var(--cream);}
+#reviews{background:var(--wine-dark);}
+#faq{background:var(--cream);}
+#contact{background:var(--warm-white);}
+.section-label{font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--wine);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.section-label::before{content:'';width:2rem;height:2px;background:var(--wine);display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:900;line-height:1.15;color:var(--dark);margin-bottom:0.8rem;max-width:520px;}
+.section-sub{color:var(--muted);font-size:0.97rem;line-height:1.7;max-width:480px;margin-bottom:3rem;}
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;}
+.feature-card{background:var(--warm-white);border:1px solid var(--border);border-radius:4px;padding:1.8rem;transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--wine);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(139,26,58,0.1);}
+.feature-card:hover::before{transform:scaleX(1);}
+.feature-icon{width:48px;height:48px;background:rgba(139,26,58,0.08);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;}
+.feature-title{font-size:0.97rem;font-weight:700;margin-bottom:0.4rem;}
+.feature-text{font-size:0.86rem;line-height:1.65;color:var(--muted);}
+/* SERVICES */
+.services-layout{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+.price-table{width:100%;border-collapse:collapse;}
+.price-table thead tr{background:var(--wine);color:#fff;}
+.price-table th{padding:0.8rem 1rem;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-align:left;}
+.price-table th:last-child{text-align:right;}
+.price-table tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+.price-table tbody tr:hover{background:rgba(139,26,58,0.03);}
+.price-cat{background:rgba(139,26,58,0.06)!important;}
+.price-cat td{padding:0.55rem 1rem;font-size:0.73rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--wine);}
+.price-table td{padding:0.8rem 1rem;font-size:0.88rem;}
+.price-table td:last-child{text-align:right;font-weight:700;color:var(--wine);white-space:nowrap;}
+.services-info{display:flex;flex-direction:column;gap:1.2rem;}
+.info-block{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--wine);padding:1.3rem;border-radius:0 4px 4px 0;}
+.info-block-title{font-size:0.93rem;font-weight:700;margin-bottom:0.4rem;}
+.info-block-text{font-size:0.86rem;line-height:1.65;color:var(--muted);}
+.teal-block{background:linear-gradient(135deg,#5BA8A0,#3D8A82);border:none;border-radius:4px;padding:1.8rem;color:#fff;}
+.teal-block .info-block-title{color:#fff;font-size:1rem;margin-bottom:0.6rem;}
+.teal-block .info-block-text{color:rgba(255,255,255,0.85);}
+/* PROCESS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem;}
+.step-card{padding:1.8rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;}
+.step-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(255,255,255,0.08);line-height:1;margin-bottom:0.4rem;}
+.step-title{font-size:0.97rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
+.step-text{font-size:0.84rem;line-height:1.65;color:rgba(255,255,255,0.55);}
+.step-accent{color:var(--teal-light);font-weight:700;}
+/* BUSINESS */
+.business-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.biz-point{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:1rem;}
+.biz-check{width:20px;height:20px;background:var(--wine);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;flex-shrink:0;margin-top:2px;}
+.biz-point-text{font-size:0.9rem;line-height:1.6;}
+.business-visual{background:var(--wine);border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:6rem;}
+/* REVIEWS SLIDER */
+.slider-wrap{position:relative;max-width:800px;margin:0 auto;}
+.slider-overflow{overflow:hidden;border-radius:4px;}
+.slides-track{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+.slide{min-width:100%;padding:0 4px;}
+.review-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;}
+.review-quote{font-size:3rem;color:var(--teal-light);opacity:0.35;position:absolute;top:1rem;left:1.5rem;font-family:Georgia,serif;line-height:1;}
+.review-text{padding-top:1.5rem;font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;}
+.review-author{display:flex;align-items:center;gap:0.9rem;}
+.review-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1rem;flex-shrink:0;}
+.review-name{font-weight:700;color:#fff;font-size:0.93rem;}
+.review-role{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:2px;}
+.review-stars{margin-left:auto;color:#F5A623;font-size:0.95rem;}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;}
+.slider-btn:hover{background:rgba(255,255,255,0.22);}
+.slider-prev{left:-22px;}
+.slider-next{right:-22px;}
+.slider-dots{display:flex;justify-content:center;gap:7px;margin-top:1.8rem;}
+.dot{height:8px;border-radius:4px;border:none;cursor:pointer;transition:all 0.3s;padding:0;}
+.dot.active{background:var(--teal-light);width:24px;}
+.dot.inactive{background:rgba(255,255,255,0.3);width:8px;}
+/* FAQ */
+.faq-list{max-width:760px;display:flex;flex-direction:column;gap:0.7rem;}
+.faq-item{background:#fff;border:1.5px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color 0.2s;}
+.faq-item.open{border-color:var(--wine);}
+.faq-btn{width:100%;padding:1.2rem 1.4rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:'Manrope',sans-serif;font-size:0.95rem;font-weight:700;color:var(--dark);}
+.faq-icon{font-size:1.3rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;line-height:1;}
+.faq-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-body p{padding:0 1.4rem 1.2rem;font-size:0.88rem;line-height:1.75;color:var(--muted);}
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.contact-item{display:flex;gap:0.9rem;align-items:flex-start;margin-bottom:1.5rem;}
+.contact-icon{width:42px;height:42px;background:rgba(139,26,58,0.08);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.contact-label{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.2rem;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--dark);text-decoration:none;}
+.contact-value:hover{color:var(--wine);}
+.form-group{margin-bottom:0.9rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem;}
+.form-label{display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;}
+.form-input,.form-select,.form-textarea{background:var(--cream);border:1.5px solid var(--border);border-radius:2px;padding:0.72rem 0.9rem;font-family:'Manrope',sans-serif;font-size:0.9rem;color:var(--text);transition:border-color 0.2s;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--wine);}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-submit{background:var(--wine);color:#fff;border:none;padding:0.95rem 2rem;font-family:'Manrope',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;border-radius:2px;width:100%;transition:background 0.2s;margin-top:0.3rem;}
+.form-submit:hover{background:var(--wine-dark);}
+.success-msg{display:none;background:rgba(91,168,160,0.1);border:1px solid var(--teal);border-radius:4px;padding:1rem;text-align:center;color:#3D8A82;font-weight:600;margin-top:0.8rem;}
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,0.45);padding:2rem 7vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:#fff;text-decoration:none;}
+.footer-logo span{color:var(--teal-light);}
+footer p{font-size:0.8rem;}
+.wa-float{position:fixed;bottom:2rem;right:2rem;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:99;transition:transform 0.2s;}
+.wa-float:hover{transform:scale(1.1);}
+/* DARK SECTION LABELS */
+.label-light{color:var(--teal-light)!important;}
+.label-light::before{background:var(--teal-light)!important;}
+.title-light{color:#fff!important;}
+.sub-light{color:rgba(255,255,255,0.5)!important;}
+/* RESPONSIVE */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;}
+  .hero-right{min-height:280px;}
+  .hero-left{padding:4rem 6vw 3rem;}
+  .services-layout,.business-layout,.contact-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .form-row{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .slider-btn{display:none;}
+}
+@media(max-width:600px){
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{gap:1.2rem;}
+}
 </style>
 </head>
 <body>
 
-<!-- НАВИГАЦИЯ -->
 <nav id="navbar">
   <a href="#" class="nav-logo">РУ<span>БИН</span></a>
   <ul class="nav-links">
@@ -722,9 +186,7 @@
     <li><a href="#faq">Вопросы</a></li>
     <li><a href="#contact" class="nav-cta">Заявка</a></li>
   </ul>
-  <div class="burger" onclick="toggleMenu()" id="burger">
-    <span></span><span></span><span></span>
-  </div>
+  <button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -740,78 +202,41 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-badge">Профессиональная химчистка с выездом</div>
-    <h1 class="hero-title">
-      Чистая мебель —<br>
-      <em>чистый бизнес</em>
-    </h1>
-    <p class="hero-sub">Химчистка диванов, кресел, стульев и ковров с выездом на ваш объект. Работаем с кафе, ресторанами и офисами. Без вывоза мебели — прямо у вас.</p>
+    <div class="hero-badge">&#9679; Профессиональная химчистка с выездом</div>
+    <h1 class="hero-title">Чистая мебель —<br><em>чистый бизнес</em></h1>
+    <p class="hero-sub">Химчистка диванов, кресел, стульев и ковров с выездом на ваш объект. Работаем с кафе, ресторанами и офисами. Без вывоза мебели.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Оставить заявку</a>
       <a href="#services" class="btn-outline">Смотреть цены</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num">1–2ч</span>
-        <span class="stat-label">сушка на месте</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">официально, с чеком</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">0₽</span>
-        <span class="stat-label">демо для новых клиентов</span>
-      </div>
+      <div><div class="stat-num">1–2ч</div><div class="stat-label">сушка на месте</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">официально, с чеком</div></div>
+      <div><div class="stat-num">0 &#8381;</div><div class="stat-label">демо для новых клиентов</div></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-visual">
-      <div class="sofa-illustration">
-        <svg class="sofa-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- carpet -->
-          <ellipse cx="150" cy="155" rx="100" ry="18" fill="#C9B99A" opacity="0.6"/>
-          <circle cx="228" cy="148" r="26" fill="#B8A882" opacity="0.8"/>
-          <circle cx="228" cy="148" r="17" fill="#C9B99A" opacity="0.9"/>
-          <circle cx="228" cy="148" r="9" fill="#B8A882"/>
-          <circle cx="228" cy="148" r="4" fill="#9A8B6E"/>
-          <!-- waves -->
-          <path d="M40 158 Q65 143 90 158 Q115 173 140 158 Q165 143 190 158 Q215 173 240 158 Q248 162 248 168 Q220 153 195 168 Q170 183 145 168 Q120 153 95 168 Q70 183 45 168 Q38 164 40 158Z" fill="#8ECEC8" opacity="0.85"/>
-          <path d="M35 172 Q62 157 88 172 Q114 187 140 172 Q166 157 192 172 Q210 182 218 178 Q194 163 168 178 Q142 193 116 178 Q90 163 64 178 Q38 193 32 180 Q32 176 35 172Z" fill="#6AADA6" opacity="0.8"/>
-          <!-- sofa body -->
-          <rect x="72" y="100" width="156" height="58" rx="10" fill="rgba(255,255,255,0.95)"/>
-          <!-- armrests -->
-          <rect x="52" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
-          <rect x="218" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
-          <!-- backrest -->
-          <rect x="64" y="68" width="172" height="46" rx="12" fill="rgba(255,255,255,0.98)"/>
-          <!-- cushions -->
-          <rect x="78" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
-          <rect x="156" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
-          <!-- sparkle -->
-          <line x1="230" y1="52" x2="230" y2="76" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
-          <line x1="218" y1="64" x2="242" y2="64" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
-          <line x1="221" y1="55" x2="239" y2="73" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
-          <line x1="239" y1="55" x2="221" y2="73" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <div class="hero-card">
-          <div class="hero-card-title">Выездная химчистка</div>
-          <div class="hero-card-sub">Без закрытия зала · Договор · Чек</div>
-        </div>
-      </div>
-      <div class="floating-badge floating-badge-1">
-        <span class="icon">⚡</span>
-        <div>
-          <div style="font-weight:700;font-size:0.85rem">Сушка за 1–2 часа</div>
-          <div style="color:#888;font-size:0.75rem">Фен прямо на месте</div>
-        </div>
-      </div>
-      <div class="floating-badge floating-badge-2">
-        <span class="icon">📄</span>
-        <div>
-          <div style="font-weight:700;font-size:0.85rem">Официально</div>
-          <div style="color:#888;font-size:0.75rem">Договор + чек</div>
-        </div>
+      <svg width="260" height="185" viewBox="0 0 300 200" fill="none">
+        <ellipse cx="150" cy="155" rx="100" ry="18" fill="#C9B99A" opacity="0.6"/>
+        <circle cx="228" cy="148" r="26" fill="#B8A882" opacity="0.8"/>
+        <circle cx="228" cy="148" r="17" fill="#C9B99A" opacity="0.9"/>
+        <circle cx="228" cy="148" r="9" fill="#B8A882"/>
+        <circle cx="228" cy="148" r="4" fill="#9A8B6E"/>
+        <path d="M40 158 Q65 143 90 158 Q115 173 140 158 Q165 143 190 158 Q215 173 240 158 Q248 162 248 168 Q220 153 195 168 Q170 183 145 168 Q120 153 95 168 Q70 183 45 168 Q38 164 40 158Z" fill="#8ECEC8" opacity="0.85"/>
+        <path d="M35 172 Q62 157 88 172 Q114 187 140 172 Q166 157 192 172 Q210 182 218 178 Q194 163 168 178 Q142 193 116 178 Q90 163 64 178 Q38 193 32 180 Q32 176 35 172Z" fill="#6AADA6" opacity="0.8"/>
+        <rect x="72" y="100" width="156" height="58" rx="10" fill="rgba(255,255,255,0.95)"/>
+        <rect x="52" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
+        <rect x="218" y="86" width="30" height="68" rx="10" fill="rgba(255,255,255,0.9)"/>
+        <rect x="64" y="68" width="172" height="46" rx="12" fill="rgba(255,255,255,0.98)"/>
+        <rect x="78" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
+        <rect x="156" y="108" width="66" height="44" rx="6" fill="rgba(255,255,255,0.7)"/>
+        <line x1="230" y1="52" x2="230" y2="76" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="218" y1="64" x2="242" y2="64" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="hero-card">
+        <div class="hero-card-title">Выездная химчистка</div>
+        <div class="hero-card-sub">Без закрытия зала &middot; Договор &middot; Чек</div>
       </div>
     </div>
   </div>
@@ -823,406 +248,144 @@
   <h2 class="section-title">Профессиональный подход на каждом этапе</h2>
   <p class="section-sub">Работаем с профессиональным оборудованием и сертифицированной химией — это не бытовой пылесос, а промышленный экстрактор.</p>
   <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon">🧴</div>
-      <div class="feature-title">Безопасная химия</div>
-      <div class="feature-text">Используем сертифицированные составы — безопасны для детей, животных и аллергиков.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">⚡</div>
-      <div class="feature-title">Быстрая сушка</div>
-      <div class="feature-text">Профессиональные фены ускоряют сушку до 1–2 часов. Мебель готова к использованию сразу.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🏠</div>
-      <div class="feature-title">Выезд на объект</div>
-      <div class="feature-text">Приезжаем с полным комплектом оборудования. Никакого вывоза мебели — всё на месте.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">📋</div>
-      <div class="feature-title">Договор и чек</div>
-      <div class="feature-text">Работаем официально как самозанятые. Договор, акт, чек из «Мой налог» — всё для вашей бухгалтерии.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🔧</div>
-      <div class="feature-title">Проф. оборудование</div>
-      <div class="feature-text">Экстрактор, сухой и моющий пылесос, распылитель — промышленный класс для максимального результата.</div>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">📞</div>
-      <div class="feature-title">Быстрый отклик</div>
-      <div class="feature-text">Отвечаем в течение 15 минут. Возможен выезд в день обращения при наличии окна.</div>
-    </div>
+    <div class="feature-card"><div class="feature-icon">&#x1F9F4;</div><div class="feature-title">Безопасная химия</div><div class="feature-text">Сертифицированные составы — безопасны для детей, животных и аллергиков.</div></div>
+    <div class="feature-card"><div class="feature-icon">&#x26A1;</div><div class="feature-title">Быстрая сушка</div><div class="feature-text">Профессиональные фены ускоряют сушку до 1–2 часов. Мебель готова сразу.</div></div>
+    <div class="feature-card"><div class="feature-icon">&#x1F3E0;</div><div class="feature-title">Выезд на объект</div><div class="feature-text">Приезжаем с полным комплектом. Никакого вывоза мебели — всё на месте.</div></div>
+    <div class="feature-card"><div class="feature-icon">&#x1F4CB;</div><div class="feature-title">Договор и чек</div><div class="feature-text">Работаем официально. Договор, акт, чек из «Мой налог» для вашей бухгалтерии.</div></div>
+    <div class="feature-card"><div class="feature-icon">&#x1F527;</div><div class="feature-title">Проф. оборудование</div><div class="feature-text">Экстрактор, сухой и моющий пылесос — промышленный класс оборудования.</div></div>
+    <div class="feature-card"><div class="feature-icon">&#x1F4DE;</div><div class="feature-title">Быстрый отклик</div><div class="feature-text">Отвечаем в течение 15 минут. Возможен выезд в день обращения.</div></div>
   </div>
 </section>
 
-<!-- УСЛУГИ И ЦЕНЫ -->
+<!-- УСЛУГИ -->
 <section id="services">
-  <div class="section-label reveal">Услуги и цены</div>
-  <h2 class="section-title reveal">Прозрачные цены без скрытых доплат</h2>
+  <div class="section-label">Услуги и цены</div>
+  <h2 class="section-title">Прозрачные цены без скрытых доплат</h2>
   <div class="services-layout">
-    <table class="price-table reveal">
-      <thead>
-        <tr>
-          <th>Услуга</th>
-          <th style="text-align:right">Стоимость</th>
-        </tr>
-      </thead>
+    <table class="price-table">
+      <thead><tr><th>Услуга</th><th>Стоимость</th></tr></thead>
       <tbody>
         <tr class="price-cat"><td colspan="2">Диваны и кресла</td></tr>
-        <tr><td>Диван до 3 мест</td><td>от 2 500 ₽</td></tr>
-        <tr><td>Угловой / от 3 мест</td><td>от 3 500 ₽</td></tr>
-        <tr><td>Кресло мягкое</td><td>от 800 ₽</td></tr>
+        <tr><td>Диван до 3 мест</td><td>от 2 500 &#8381;</td></tr>
+        <tr><td>Угловой / от 3 мест</td><td>от 3 500 &#8381;</td></tr>
+        <tr><td>Кресло мягкое</td><td>от 800 &#8381;</td></tr>
         <tr class="price-cat"><td colspan="2">Стулья</td></tr>
-        <tr><td>Ресторанный / барный стул</td><td>от 350–400 ₽</td></tr>
-        <tr><td>Офисный стул</td><td>от 400 ₽</td></tr>
+        <tr><td>Ресторанный / барный стул</td><td>от 350 &#8381;</td></tr>
+        <tr><td>Офисный стул</td><td>от 400 &#8381;</td></tr>
         <tr class="price-cat"><td colspan="2">Ковры</td></tr>
-        <tr><td>Ковёр / покрытие</td><td>от 200 ₽/м²</td></tr>
-        <tr><td>Ковровая дорожка</td><td>от 150 ₽/м²</td></tr>
+        <tr><td>Ковёр / покрытие</td><td>от 200 &#8381;/м&#178;</td></tr>
+        <tr><td>Ковровая дорожка</td><td>от 150 &#8381;/м&#178;</td></tr>
         <tr class="price-cat"><td colspan="2">Матрасы</td></tr>
-        <tr><td>Односпальный</td><td>от 2 000 ₽</td></tr>
-        <tr><td>Двуспальный</td><td>от 3 000 ₽</td></tr>
+        <tr><td>Односпальный</td><td>от 2 000 &#8381;</td></tr>
+        <tr><td>Двуспальный</td><td>от 3 000 &#8381;</td></tr>
         <tr class="price-cat"><td colspan="2">Дополнительно</td></tr>
         <tr><td>Срочный выезд (день в день)</td><td>+30%</td></tr>
-        <tr><td>Обработка от запаха</td><td>от 500 ₽</td></tr>
+        <tr><td>Обработка от запаха</td><td>от 500 &#8381;</td></tr>
       </tbody>
     </table>
-    <div class="services-info reveal">
-      <div class="info-block">
-        <div class="info-block-title">📦 Скидки при объёме</div>
-        <div class="info-block-text">При заказе от 10 единиц мебели — скидка 10%. При регулярном обслуживании — фиксированная цена по договору.</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-title">🕐 Удобное время выезда</div>
-        <div class="info-block-text">Работаем с 7:00 до 22:00 ежедневно. Для заведений — выезд до открытия или в тихий час, чтобы не мешать гостям.</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-title">💳 Оплата</div>
-        <div class="info-block-text">Наличными или безналичным переводом. После оплаты выдаём чек самозанятого через приложение «Мой налог».</div>
-      </div>
-      <div class="teal-block">
-        <div class="info-block-title">🎁 Бесплатное демо</div>
-        <div class="info-block-text">Для новых клиентов — почистим одно кресло или стул бесплатно. Вы увидите результат до того, как примете решение.</div>
-        <a href="#contact" class="btn-primary">Записаться на демо</a>
-      </div>
+    <div class="services-info">
+      <div class="info-block"><div class="info-block-title">&#x1F4E6; Скидки при объёме</div><div class="info-block-text">При заказе от 10 единиц — скидка 10%. При регулярном обслуживании — фиксированная цена по договору.</div></div>
+      <div class="info-block"><div class="info-block-title">&#x1F550; Удобное время</div><div class="info-block-text">Работаем с 7:00 до 22:00 ежедневно. Для заведений — до открытия или в тихий час.</div></div>
+      <div class="info-block"><div class="info-block-title">&#x1F4B3; Оплата</div><div class="info-block-text">Наличными или переводом. После оплаты выдаём чек самозанятого.</div></div>
+      <div class="teal-block"><div class="info-block-title">&#x1F381; Бесплатное демо</div><div class="info-block-text">Для новых клиентов — почистим одно кресло бесплатно. Увидите результат до оплаты.</div><br><a href="#contact" class="btn-primary" style="background:#fff;color:var(--wine);display:inline-block;margin-top:0.5rem;">Записаться на демо</a></div>
     </div>
   </div>
 </section>
 
-<!-- КАК МЫ РАБОТАЕМ -->
+<!-- КАК РАБОТАЕМ -->
 <section id="process">
-  <div class="section-label reveal">Процесс</div>
-  <h2 class="section-title reveal">Как проходит химчистка</h2>
-  <p class="section-sub reveal">Весь процесс занимает от 2 до 4 часов в зависимости от объёма. Мебель готова к использованию в тот же день.</p>
+  <div class="section-label label-light">Процесс</div>
+  <h2 class="section-title title-light">Как проходит химчистка</h2>
+  <p class="section-sub sub-light">Весь процесс занимает от 2 до 4 часов. Мебель готова к использованию в тот же день.</p>
   <div class="steps-grid">
-    <div class="step-card reveal">
-      <div class="step-num">01</div>
-      <div class="step-title">Заявка и расчёт</div>
-      <div class="step-text">Вы оставляете заявку — мы перезваниваем в течение <span class="step-accent">15 минут</span>, уточняем объём и называем точную цену.</div>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-num">02</div>
-      <div class="step-title">Выезд на объект</div>
-      <div class="step-text">Приезжаем в согласованное время с полным комплектом оборудования. <span class="step-accent">Без предоплаты.</span></div>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-num">03</div>
-      <div class="step-title">Химчистка</div>
-      <div class="step-text">Проводим профессиональную чистку экстрактором. <span class="step-accent">Не мешаем работе</span> вашего заведения.</div>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-num">04</div>
-      <div class="step-title">Сушка и сдача</div>
-      <div class="step-text">Сушим феном прямо на месте — <span class="step-accent">1–2 часа.</span> Подписываем акт. Выдаём чек. Мебель готова.</div>
-    </div>
+    <div class="step-card"><div class="step-num">01</div><div class="step-title">Заявка и расчёт</div><div class="step-text">Вы оставляете заявку — перезваниваем в течение <span class="step-accent">15 минут</span>, называем точную цену.</div></div>
+    <div class="step-card"><div class="step-num">02</div><div class="step-title">Выезд на объект</div><div class="step-text">Приезжаем с полным комплектом оборудования. <span class="step-accent">Без предоплаты.</span></div></div>
+    <div class="step-card"><div class="step-num">03</div><div class="step-title">Химчистка</div><div class="step-text">Профессиональная чистка экстрактором. <span class="step-accent">Не мешаем работе</span> заведения.</div></div>
+    <div class="step-card"><div class="step-num">04</div><div class="step-title">Сушка и сдача</div><div class="step-text">Сушим феном — <span class="step-accent">1–2 часа.</span> Подписываем акт. Выдаём чек.</div></div>
   </div>
 </section>
 
 <!-- ДЛЯ БИЗНЕСА -->
 <section id="business">
   <div class="business-layout">
-    <div class="reveal">
+    <div>
       <div class="section-label">Для бизнеса</div>
       <h2 class="section-title">Работаем с кафе, ресторанами и офисами</h2>
-      <p class="section-sub">Понимаем специфику HoReCa: выезжаем до открытия, работаем быстро, оформляем все документы для бухгалтерии.</p>
-      <div class="business-points">
-        <div class="biz-point">
-          <div class="biz-check">✓</div>
-          <div class="biz-point-text"><strong>Не мешаем работе зала</strong> — приезжаем до открытия или в тихий час</div>
-        </div>
-        <div class="biz-point">
-          <div class="biz-check">✓</div>
-          <div class="biz-point-text"><strong>Полный пакет документов</strong> — договор, акт, счёт, чек самозанятого</div>
-        </div>
-        <div class="biz-point">
-          <div class="biz-check">✓</div>
-          <div class="biz-point-text"><strong>Абонентское обслуживание</strong> — фиксированная цена, регулярные выезды</div>
-        </div>
-        <div class="biz-point">
-          <div class="biz-check">✓</div>
-          <div class="biz-point-text"><strong>Санитарные нормы</strong> — чистая мебель это требование СанПиН, не просто эстетика</div>
-        </div>
-        <div class="biz-point">
-          <div class="biz-check">✓</div>
-          <div class="biz-point-text"><strong>Лучшие отзывы</strong> — гости замечают чистоту и свежесть, оставляют высокие оценки</div>
-        </div>
+      <p class="section-sub">Понимаем специфику HoReCa: выезжаем до открытия, не мешаем гостям, оформляем все документы.</p>
+      <div style="margin-top:1.5rem;">
+        <div class="biz-point"><div class="biz-check">&#10003;</div><div class="biz-point-text"><strong>Не мешаем работе зала</strong> — приезжаем до открытия или в тихий час</div></div>
+        <div class="biz-point"><div class="biz-check">&#10003;</div><div class="biz-point-text"><strong>Полный пакет документов</strong> — договор, акт, счёт, чек самозанятого</div></div>
+        <div class="biz-point"><div class="biz-check">&#10003;</div><div class="biz-point-text"><strong>Абонентское обслуживание</strong> — фиксированная цена, регулярные выезды</div></div>
+        <div class="biz-point"><div class="biz-check">&#10003;</div><div class="biz-point-text"><strong>Санитарные нормы</strong> — чистая мебель это требование СанПиН</div></div>
+        <div class="biz-point"><div class="biz-check">&#10003;</div><div class="biz-point-text"><strong>Лучшие отзывы</strong> — гости замечают чистоту и оставляют высокие оценки</div></div>
       </div>
-      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:2rem">Отправить КП на email</a>
+      <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:2rem;">Получить КП на email</a>
     </div>
-    <div class="business-visual reveal">
-      <span class="biz-icon">🏪</span>
-    </div>
+    <div class="business-visual">&#x1F3EA;</div>
   </div>
 </section>
-
-<!-- КОНТАКТЫ -->
-<section id="contact">
-  <div class="section-label reveal">Контакты</div>
-  <h2 class="section-title reveal">Оставьте заявку — ответим за 15 минут</h2>
-  <div class="contact-layout">
-    <div class="contact-info reveal">
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-item-label">Телефон / WhatsApp</div>
-          <a href="tel:+70000000000" class="contact-item-value">+7 (000) 000-00-00</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-item-label">Email</div>
-          <a href="/cdn-cgi/l/email-protection#2841464e47685a5d4a4146054b444d4946065a5d" class="contact-item-value"><span class="__cf_email__" data-cfemail="0861666e67487a7d6a6166256b646d6966267a7d">[email&#160;protected]</span></a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🕐</div>
-        <div>
-          <div class="contact-item-label">Время работы</div>
-          <div class="contact-item-value">Ежедневно 7:00 — 22:00</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-item-label">Район работы</div>
-          <div class="contact-item-value">Город и пригород</div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form reveal">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Ваше имя</label>
-          <input type="text" class="form-input" placeholder="Как к вам обращаться?" id="fname">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Телефон</label>
-          <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" id="fphone">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Тип клиента</label>
-        <select class="form-select" id="ftype">
-          <option value="">Выберите...</option>
-          <option>Частное лицо</option>
-          <option>Кафе / ресторан</option>
-          <option>Офис / компания</option>
-          <option>Гостиница / отель</option>
-          <option>Другое</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Что нужно почистить?</label>
-        <textarea class="form-textarea" placeholder="Например: 2 дивана и 8 стульев в кафе, есть пятна от кофе..." id="fmsg"></textarea>
-      </div>
-      <button class="form-submit" onclick="submitForm()">Отправить заявку →</button>
-      <div class="success-msg" id="successMsg">✅ Заявка принята! Перезвоним в течение 15 минут.</div>
-      <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
-    </div>
-  </div>
-</section>
-
 
 <!-- ОТЗЫВЫ -->
-<section id="reviews" style="padding:6rem 7vw;background:var(--wine-dark);position:relative;overflow:hidden;">
-  <div style="position:absolute;top:-50%;left:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(91,168,160,0.12) 0%,transparent 70%);pointer-events:none;"></div>
-  <div class="section-label reveal" style="color:var(--teal-light);">
-    <style>.section-label::before{background:var(--teal-light)!important}</style>
-    Отзывы клиентов
-  </div>
-  <h2 class="section-title reveal" style="color:#fff;">Что говорят наши клиенты</h2>
-  <p class="section-sub reveal" style="color:rgba(255,255,255,0.5);">Реальные отзывы от частных клиентов и заведений</p>
-
-  <div class="slider-wrap reveal" style="position:relative;max-width:800px;margin:0 auto;">
-    <div class="slider" id="reviewSlider" style="overflow:hidden;">
-      <div class="slides" id="slides" style="display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
-
-        <!-- Отзыв 1 -->
-        <div class="slide" style="min-width:100%;padding:0 8px;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
-            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
-            <div style="padding-top:1.5rem;">
-              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Приехали вовремя, быстро приступили к работе и справились с тяжёлыми пятнами. Мебель выглядит как после покупки — не ожидала такого результата. Однозначно рекомендую!</p>
-              <div style="display:flex;align-items:center;gap:1rem;">
-                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#C4436A,#8B1A3A);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">М</div>
-                <div>
-                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Марина Соколова</div>
-                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
-                </div>
-                <div style="margin-left:auto;display:flex;gap:3px;">
-                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Отзыв 2 -->
-        <div class="slide" style="min-width:100%;padding:0 8px;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
-            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
-            <div style="padding-top:1.5rem;">
-              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Согласовали удобное время для чистки — приехали до открытия заведения, не мешали работе. Оборудование профессиональное, не бытовое. После сушки феном через 2 часа зал был полностью готов к гостям. Спасибо за оперативность!</p>
-              <div style="display:flex;align-items:center;gap:1rem;">
-                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#5BA8A0,#3D8A82);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">А</div>
-                <div>
-                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Алексей Громов</div>
-                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Управляющий кафе «Уют»</div>
-                </div>
-                <div style="margin-left:auto;display:flex;gap:3px;">
-                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Отзыв 3 -->
-        <div class="slide" style="min-width:100%;padding:0 8px;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
-            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
-            <div style="padding-top:1.5rem;">
-              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Впервые заказали химчистку ковра — он лежал у нас уже 5 лет и мы думали придётся выбросить. После чистки стал выглядеть как новый, приятный свежий запах. Приятно удивлены результатом. Отличная работа!</p>
-              <div style="display:flex;align-items:center;gap:1rem;">
-                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#C4436A,#6B1230);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">Е</div>
-                <div>
-                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Елена Васильева</div>
-                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
-                </div>
-                <div style="margin-left:auto;display:flex;gap:3px;">
-                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Отзыв 4 -->
-        <div class="slide" style="min-width:100%;padding:0 8px;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;position:relative;">
-            <div style="font-size:3rem;color:var(--teal-light);opacity:0.4;position:absolute;top:1.2rem;left:1.8rem;font-family:Georgia,serif;line-height:1;">&ldquo;</div>
-            <div style="padding-top:1.5rem;">
-              <p style="font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.88);font-style:italic;margin-bottom:1.8rem;">Заказали химчистку детской мебели — работали двое, поэтому всё прошло очень быстро. Использовали экологичные средства, что для нас принципиально важно. Очень довольны результатом и обязательно порекомендуем всем знакомым!</p>
-              <div style="display:flex;align-items:center;gap:1rem;">
-                <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#8ECEC8,#5BA8A0);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem;flex-shrink:0;">О</div>
-                <div>
-                  <div style="font-weight:700;color:#fff;font-size:0.95rem;">Ольга Петрова</div>
-                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Частный клиент</div>
-                </div>
-                <div style="margin-left:auto;display:flex;gap:3px;">
-                  <span style="color:#F5A623;font-size:1rem;">★★★★★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+<section id="reviews">
+  <div class="section-label label-light">Отзывы клиентов</div>
+  <h2 class="section-title title-light">Что говорят наши клиенты</h2>
+  <p class="section-sub sub-light">Реальные отзывы от частных клиентов и заведений</p>
+  <div class="slider-wrap">
+    <div class="slider-overflow">
+      <div class="slides-track" id="slidesTrack">
+        <div class="slide"><div class="review-card"><div class="review-quote">&ldquo;</div><p class="review-text">Приехали вовремя, быстро приступили к работе и справились с тяжёлыми пятнами. Мебель выглядит как после покупки. Однозначно рекомендую!</p><div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#C4436A,#8B1A3A);">М</div><div><div class="review-name">Марина Соколова</div><div class="review-role">Частный клиент</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+        <div class="slide"><div class="review-card"><div class="review-quote">&ldquo;</div><p class="review-text">Согласовали удобное время для чистки — приехали до открытия заведения. Оборудование профессиональное. После сушки через 2 часа зал был готов к гостям. Спасибо!</p><div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#5BA8A0,#3D8A82);">А</div><div><div class="review-name">Алексей Громов</div><div class="review-role">Управляющий кафе</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+        <div class="slide"><div class="review-card"><div class="review-quote">&ldquo;</div><p class="review-text">Впервые заказали химчистку ковра — он лежал уже 5 лет. После чистки стал выглядеть как новый, приятный свежий запах. Отличная работа!</p><div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#C4436A,#6B1230);">Е</div><div><div class="review-name">Елена Васильева</div><div class="review-role">Частный клиент</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
+        <div class="slide"><div class="review-card"><div class="review-quote">&ldquo;</div><p class="review-text">Заказали химчистку детской мебели — работали двое, всё прошло очень быстро. Использовали экологичные средства. Очень довольны и обязательно порекомендуем!</p><div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#8ECEC8,#5BA8A0);">О</div><div><div class="review-name">Ольга Петрова</div><div class="review-role">Частный клиент</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div></div>
       </div>
     </div>
-
-    <!-- Кнопки -->
-    <button onclick="prevSlide()" style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8592;</button>
-    <button onclick="nextSlide()" style="position:absolute;right:-24px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8594;</button>
-
-    <!-- Точки -->
-    <div style="display:flex;justify-content:center;gap:8px;margin-top:2rem;" id="dots">
-      <button onclick="goToSlide(0)" class="dot active-dot" style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
-      <button onclick="goToSlide(1)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
-      <button onclick="goToSlide(2)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
-      <button onclick="goToSlide(3)" class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;"></button>
+    <button class="slider-btn slider-prev" onclick="prevSlide()">&#8592;</button>
+    <button class="slider-btn slider-next" onclick="nextSlide()">&#8594;</button>
+    <div class="slider-dots" id="sliderDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot inactive" onclick="goToSlide(1)"></button>
+      <button class="dot inactive" onclick="goToSlide(2)"></button>
+      <button class="dot inactive" onclick="goToSlide(3)"></button>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="padding:6rem 7vw;background:var(--cream);">
-  <div class="section-label reveal">Частые вопросы</div>
-  <h2 class="section-title reveal">Ваши вопросы — наши ответы</h2>
-  <p class="section-sub reveal">Отвечаем на самые популярные вопросы клиентов</p>
+<section id="faq">
+  <div class="section-label">Частые вопросы</div>
+  <h2 class="section-title">Ваши вопросы — наши ответы</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Сколько времени занимает чистка?<span class="faq-icon">+</span></button><div class="faq-body"><p>Зависит от объёма. Один диван — около 30–40 минут чистки плюс 1–2 часа сушки. Стул — 15–20 минут. При большом объёме работаем вдвоём — это ускоряет процесс. Мебель готова в тот же день.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Какие загрязнения вы удаляете?<span class="faq-icon">+</span></button><div class="faq-body"><p>Удаляем пятна от еды и напитков (кофе, вино, соусы), жировые загрязнения, грязь, шерсть животных, неприятные запахи, пыль и бактерии. Со свежими пятнами справляемся в 100% случаев.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Нужно ли вывозить мебель?<span class="faq-icon">+</span></button><div class="faq-body"><p>Нет. Мы приезжаем к вам с полным комплектом оборудования и проводим чистку прямо на месте. Для заведений работаем до открытия или в тихий час.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Безопасна ли химия для детей и животных?<span class="faq-icon">+</span></button><div class="faq-body"><p>Да, используем сертифицированные средства на водной основе — без токсичных компонентов. После высыхания мебель абсолютно безопасна.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Работаете ли с юридическими лицами?<span class="faq-icon">+</span></button><div class="faq-body"><p>Да, работаем с кафе, ресторанами, гостиницами и офисами. Предоставляем полный пакет: договор, акт, счёт и чек самозанятого. Возможно регулярное обслуживание.</p></div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Есть ли гарантия на результат?<span class="faq-icon">+</span></button><div class="faq-body"><p>Перед началом честно говорим на что можно рассчитывать. Для новых клиентов — бесплатное демо на одном предмете: вы видите качество до оплаты.</p></div></div>
+  </div>
+</section>
 
-  <div style="max-width:780px;display:flex;flex-direction:column;gap:0.75rem;" class="reveal">
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Сколько времени занимает чистка?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Зависит от объёма. Один диван — около 30–40 минут чистки плюс 1–2 часа сушки феном. Стул или кресло — 15–20 минут. При большом объёме (например 20 стульев в ресторане) работаем вдвоём — это значительно ускоряет процесс. Мебель готова к использованию в тот же день.</p>
-      </div>
+<!-- КОНТАКТЫ -->
+<section id="contact">
+  <div class="section-label">Контакты</div>
+  <h2 class="section-title">Оставьте заявку — ответим за 15 минут</h2>
+  <div class="contact-layout">
+    <div>
+      <div class="contact-item"><div class="contact-icon">&#x1F4DE;</div><div><div class="contact-label">Телефон / WhatsApp</div><a href="tel:+70000000000" class="contact-value">+7 (000) 000-00-00</a></div></div>
+      <div class="contact-item"><div class="contact-icon">&#x2709;&#xFE0F;</div><div><div class="contact-label">Email</div><a href="mailto:info@rubin-clean.ru" class="contact-value">info@rubin-clean.ru</a></div></div>
+      <div class="contact-item"><div class="contact-icon">&#x1F550;</div><div><div class="contact-label">Время работы</div><div class="contact-value">Ежедневно 7:00 — 22:00</div></div></div>
+      <div class="contact-item"><div class="contact-icon">&#x1F4CD;</div><div><div class="contact-label">Район работы</div><div class="contact-value">Город и пригород</div></div></div>
     </div>
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Какие загрязнения вы удаляете?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Удаляем пятна от еды и напитков (кофе, вино, соусы), жировые загрязнения, уличную грязь, шерсть животных, неприятные запахи, пыль и бактерии. Со свежими пятнами справляемся в 100% случаев. Старые и глубокие загрязнения — в большинстве случаев, но предупредим заранее если есть ограничения по материалу.</p>
+    <div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Ваше имя</label><input type="text" class="form-input" placeholder="Как к вам обращаться?" id="fname"></div>
+        <div class="form-group"><label class="form-label">Телефон</label><input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" id="fphone"></div>
       </div>
+      <div class="form-group"><label class="form-label">Тип клиента</label><select class="form-select" id="ftype"><option value="">Выберите...</option><option>Частное лицо</option><option>Кафе / ресторан</option><option>Офис / компания</option><option>Гостиница / отель</option></select></div>
+      <div class="form-group"><label class="form-label">Что нужно почистить?</label><textarea class="form-textarea" placeholder="Например: 2 дивана и 8 стульев в кафе..." id="fmsg"></textarea></div>
+      <button class="form-submit" onclick="submitForm()">Отправить заявку &#8594;</button>
+      <div class="success-msg" id="successMsg">&#x2705; Заявка принята! Перезвоним в течение 15 минут.</div>
+      <p style="font-size:0.76rem;color:var(--muted);text-align:center;margin-top:0.6rem;">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
     </div>
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Нужно ли вывозить мебель?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Нет, это одно из главных наших преимуществ. Мы приезжаем к вам с полным комплектом профессионального оборудования и проводим чистку прямо на месте. Никакого вывоза, никаких неудобств. Для заведений работаем до открытия или в тихий час — не мешаем гостям.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Безопасна ли химия для детей и животных?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Да, используем только сертифицированные моющие средства на водной основе — без агрессивных растворителей и токсичных компонентов. После высыхания мебель абсолютно безопасна. Рекомендуем не допускать детей и животных к мебели во время чистки и в течение 1–2 часов сушки.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Работаете ли с юридическими лицами?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Да, работаем с кафе, ресторанами, гостиницами и офисами. Предоставляем полный пакет закрывающих документов: договор, акт выполненных работ, счёт и чек самозанятого из приложения «Мой налог». НДС не облагается. Возможно регулярное обслуживание по договору с фиксированной ценой.</p>
-      </div>
-    </div>
-
-    <div class="faq-item" style="background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
-      <button onclick="toggleFaq(this)" style="width:100%;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left;font-family:Manrope,sans-serif;font-size:0.97rem;font-weight:700;color:var(--dark);">
-        Есть ли гарантия на результат?
-        <span class="faq-arrow" style="font-size:1.2rem;color:var(--wine);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
-      </button>
-      <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;">
-        <p style="padding:0 1.5rem 1.3rem;font-size:0.9rem;line-height:1.75;color:var(--muted);">Перед началом работ оцениваем состояние изделия и честно говорим на что можно рассчитывать. Если по каким-то причинам результат вас не устраивает — разберём ситуацию индивидуально. Для новых клиентов предлагаем бесплатное демо на одном предмете — вы видите качество до оплаты.</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1230,118 +393,125 @@
 <footer>
   <a href="#" class="footer-logo">РУ<span>БИН</span></a>
   <p>Профессиональная химчистка мягкой мебели и ковров</p>
-  <p>© 2025 РУБИН. Все права защищены.</p>
+  <p>&copy; 2025 РУБИН. Все права защищены.</p>
 </footer>
 
-<!-- WhatsApp кнопка -->
-<a href="https://wa.me/70000000000" class="wa-float" target="_blank" title="WhatsApp">💬</a>
+<a href="https://wa.me/70000000000" class="wa-float" target="_blank">&#x1F4AC;</a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Навбар при скролле
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
+<script>
+// Навбар
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Мобильное меню
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Слайдер отзывов
+var currentSlide = 0;
+var totalSlides = 4;
+var autoTimer;
+
+function updateSlider() {
+  var track = document.getElementById('slidesTrack');
+  if (!track) return;
+  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  var dots = document.querySelectorAll('.dot');
+  dots.forEach(function(d, i) {
+    d.className = 'dot ' + (i === currentSlide ? 'active' : 'inactive');
   });
+}
 
-  // Мобильное меню
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-  function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-  }
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider();
+  resetTimer();
+}
 
-  // Scroll reveal
-  // animations disabled for compatibility
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlider();
+  resetTimer();
+}
 
-  // Форма
-  function submitForm() {
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    if (!name || !phone) {
-      alert('Пожалуйста, заполните имя и телефон.');
-      return;
-    }
-    document.getElementById('successMsg').style.display = 'block';
-    document.querySelector('.form-submit').style.display = 'none';
-    document.getElementById('fname').value = '';
-    document.getElementById('fphone').value = '';
-    document.getElementById('fmsg').value = '';
-    document.getElementById('ftype').value = '';
-  }
+function goToSlide(n) {
+  currentSlide = n;
+  updateSlider();
+  resetTimer();
+}
 
+function resetTimer() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(nextSlide, 5000);
+}
 
-  // ── СЛАЙДЕР ОТЗЫВОВ ──
-  let currentSlide = 0;
-  const totalSlides = 4;
-  let autoplayTimer;
+autoTimer = setInterval(nextSlide, 5000);
 
-  function updateSlider() {
-    const slides = document.getElementById('slides');
-    if (slides) {
-      slides.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-      document.querySelectorAll('.dot').forEach((d, i) => {
-        d.style.background = i === currentSlide ? 'var(--teal-light)' : 'rgba(255,255,255,0.3)';
-        d.style.width = i === currentSlide ? '24px' : '8px';
-        d.style.borderRadius = '4px';
-      });
-    }
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-    resetAutoplay();
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-    resetAutoplay();
-  }
-
-  function goToSlide(n) {
-    currentSlide = n;
-    updateSlider();
-    resetAutoplay();
-  }
-
-  function resetAutoplay() {
-    clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(nextSlide, 5000);
-  }
-
-  // Автопролистывание каждые 5 секунд
-  autoplayTimer = setInterval(nextSlide, 5000);
-
-  // Свайп на мобильных
-  let touchStartX = 0;
-  const sliderEl = document.getElementById('reviewSlider');
-  if (sliderEl) {
-    sliderEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-    sliderEl.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+// Свайп на мобильных
+var touchStartX = 0;
+document.addEventListener('DOMContentLoaded', function() {
+  var sl = document.querySelector('.slider-overflow');
+  if (sl) {
+    sl.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+    sl.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
     });
   }
+});
 
-  // ── FAQ ──
-  function toggleFaq(btn) {
-    const body = btn.nextElementSibling;
-    const arrow = btn.querySelector('.faq-arrow');
-    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
-    // Закрыть все
-    document.querySelectorAll('.faq-body').forEach(b => { b.style.maxHeight = '0px'; b.style.paddingBottom = '0'; });
-    document.querySelectorAll('.faq-arrow').forEach(a => { a.style.transform = 'rotate(0deg)'; a.textContent = '+'; });
-    document.querySelectorAll('.faq-item').forEach(i => i.style.borderColor = 'var(--border)');
-    // Открыть текущий если был закрыт
-    if (!isOpen) {
-      body.style.maxHeight = body.scrollHeight + 'px';
-      arrow.style.transform = 'rotate(45deg)';
-      btn.closest('.faq-item').style.borderColor = 'var(--wine)';
-    }
+// FAQ
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var body = item.querySelector('.faq-body');
+  var icon = btn.querySelector('.faq-icon');
+  var isOpen = item.classList.contains('open');
+  // Закрыть все
+  document.querySelectorAll('.faq-item').forEach(function(i) {
+    i.classList.remove('open');
+    i.querySelector('.faq-body').style.maxHeight = '0';
+    i.querySelector('.faq-icon').textContent = '+';
+    i.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+  });
+  // Открыть если был закрыт
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    icon.textContent = '+';
+    icon.style.transform = 'rotate(45deg)';
   }
+}
 
-  // Плавный скролл для якорей
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click',
+// Форма
+async function submitForm() {
+  var name = document.getElementById('fname').value.trim();
+  var phone = document.getElementById('fphone').value.trim();
+  if (!name || !phone) { alert('Пожалуйста, заполните имя и телефон.'); return; }
+  var data = { name: name, phone: phone, type: document.getElementById('ftype').value, message: document.getElementById('fmsg').value };
+  try {
+    var res = await fetch('https://formspree.io/f/mbdzrgrg', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    if (res.ok) {
+      document.getElementById('successMsg').style.display = 'block';
+      document.querySelector('.form-submit').style.display = 'none';
+      document.getElementById('fname').value = '';
+      document.getElementById('fphone').value = '';
+      document.getElementById('fmsg').value = '';
+    } else { alert('Ошибка отправки. Попробуйте ещё раз.'); }
+  } catch(e) { alert('Ошибка отправки. Попробуйте ещё раз.'); }
+}
+
+// Плавный скролл
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
